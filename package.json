@@ -1,0 +1,10 @@
+{
+    "name" : "fuzzy-octo-knits",
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/zubron/fuzzy-octo-knits.git"
+    },
+    "dependencies" : {
+        "express" : "*"
+    }
+}
