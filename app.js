@@ -1,9 +1,7 @@
 var express = require('express');
 var app = express();
 
-app.get('/', function(req, res) {
-    res.send('Best. Charts. Evar.');
-});
+app.use(express.static(__dirname));
 
 var server = app.listen(8080, function () {
     var host = server.address().address;
@@ -11,3 +9,4 @@ var server = app.listen(8080, function () {
 
     console.log('Charts - listening at http://%s:%s', host, port);
 });
+
