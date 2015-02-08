@@ -1,6 +1,20 @@
-.chart-box {
-    border: thin black;
+.chart-container {
+    border : thin black;
     border-style: solid;
+    border-right-style: none;
+    border-bottom-style: none;
+    width: 800px;
+    height: 600px;
+    box-sizing: content-box;
+}
+
+.chart-box {
     width: 100px;
     height: 100px;
+    border: thin black;
+    border-left-style: none;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    float: left;
+    box-sizing: border-box;
 }
