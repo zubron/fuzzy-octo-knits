@@ -18,3 +18,18 @@
     float: left;
     box-sizing: border-box;
 }
+
+.chart-colour-selector {
+    clear: left;
+    height: 100px;
+    width: 100%;
+}
+
+.chart-colour-selector-box {
+    width: 45px;
+    height: 45px;
+    border: thin black;
+    border-style: solid;
+    margin-right: 5px;
+    float: left;
+}
