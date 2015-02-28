@@ -3,13 +3,24 @@
 
     app.controller('ChartController', function($http) {
         var CommandManager = function() {
-            this.stack = [];
+            this.undoStack = [];
+            this.redoStack = [];
             this.addCommand = function(execute, undo) {
-                this.stack.push({execute: execute, undo: undo});
+                this.undoStack.push({execute: execute, undo: undo});
+                this.redoStack = [];
                 execute();
             };
+
             this.undo = function() {
-                this.stack.pop().undo();
+                var command = this.undoStack.pop();
+                command.undo();
+                this.redoStack.push(command);
+            };
+
+            this.redo = function() {
+                var command = this.redoStack.pop();
+                command.execute();
+                this.undoStack.push(command);
             };
         };
 
@@ -43,6 +54,10 @@
 
         this.undo = function() {
             chartCommandManager.undo();
+        };
+
+        this.redo = function() {
+            chartCommandManager.redo();
         };
 
         for (var i = 0; i < 8; i++) {
