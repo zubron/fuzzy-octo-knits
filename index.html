@@ -19,8 +19,8 @@
             <div ng-repeat="colour in chart.defaultColours" class="chart-colour-selector-box" ng-click="chart.selectColour(colour)" ng-style="{'background-color': chart.cssFormat(colour)}">
             </div>
             <button type="button" class="btn btn-lg" ng-click="chart.clearCells()">Clear cells</button>
-            <button type="button" class="btn btn-lg" ng-click="chart.undo()">Undo</button>
-            <button type="button" class="btn btn-lg" ng-click="chart.redo()">Redo</button>
+            <button type="button" class="btn btn-lg" ng-click="chart.undo()" ng-disabled="!chart.canUndo()">Undo</button>
+            <button type="button" class="btn btn-lg" ng-click="chart.redo()" ng-disabled="!chart.canRedo()">Redo</button>
         </div>
         <div class="chart-container">
             <div ng-repeat="row in chart.cells">

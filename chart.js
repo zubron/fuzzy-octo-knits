@@ -22,6 +22,14 @@
                 command.execute();
                 this.undoStack.push(command);
             };
+
+            this.canUndo = function() {
+                return this.undoStack.length !== 0;
+            };
+
+            this.canRedo = function() {
+                return this.redoStack.length !== 0;
+            };
         };
 
         var chartCommandManager = new CommandManager();
@@ -58,6 +66,14 @@
 
         this.redo = function() {
             chartCommandManager.redo();
+        };
+
+        this.canUndo = function() {
+            return chartCommandManager.canUndo();
+        };
+
+        this.canRedo = function() {
+            return chartCommandManager.canRedo();
         };
 
         for (var i = 0; i < 8; i++) {
