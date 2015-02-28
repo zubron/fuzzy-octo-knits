@@ -29,6 +29,14 @@
             }
         }
  
+        this.clearCells = function() {
+            this.cells.forEach(function(elementRow) {
+                elementRow.forEach(function(elementCell) {
+                    elementCell.changeColour(0xFFFFFF);
+                });
+            });
+        }
+
         var self = this;
     });
 })();
