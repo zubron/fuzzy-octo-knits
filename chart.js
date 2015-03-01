@@ -56,11 +56,17 @@
         };
 
         var cssFormat = function(colour) {
-            return '#' + String('000000' + colour.toString(16)).slice(-6);
+            if (isNaN(colour)) {
+                return colour;
+            } else {
+                return '#' + String('000000' + colour.toString(16)).slice(-6);
+            }
         };
         
-        var ChartCell = function() {
+        var ChartCell = function(row, column) {
             var self = this;
+            this.row = row;
+            this.column = column;
             self.colour = cssFormat(0xFFFFFF);
             self.changeColour = function(colour) {
                 var command = self.changeColourCommand(colour);
@@ -105,10 +111,29 @@
         self.canUndo = chartCommandManager.canUndo;
         self.canRedo = chartCommandManager.canRedo;
 
-        for (var i = 0; i < 8; i++) {
-            self.cells[i] = [];
-            for (var j = 0; j < 6; j++) {
-                self.cells[i][j] = new ChartCell();
+        self.fillRow = function(index) {
+            console.log('doubleClick' + index);
+            var row = self.cells[index];
+            var commands = [];
+            row.forEach(function(cell) {
+                var command = cell.changeColourCommand(self.colour);
+                commands.push(command);
+            });
+            chartCommandManager.addCommand(new CompositeCommand(commands));
+        };
+
+        self.changeColour = function(event, row, column) {
+            if(event.ctrlKey) {
+                self.fillRow(row);
+            } else {
+                self.cells[row][column].changeColour(self.colour);
+            }
+        };
+
+        for (var row = 0; row < 6; row++) {
+            self.cells[row] = [];
+            for (var column = 0; column < 8; column++) {
+                self.cells[row][column] = new ChartCell(row, column);
             }
         }
  
