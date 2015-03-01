@@ -15,10 +15,6 @@
                 command.execute();
             };
 
-            self.addCommandPair = function(execute, undo) {
-                self.addCommand({execute: execute, undo: undo});
-            };
-
             self.undo = function() {
                 var command = self.undoStack.pop();
                 command.undo();
@@ -42,20 +38,19 @@
 
         var chartCommandManager = new CommandManager();
 
-        var CompositeCommand = function(executeCommands, undoCommands) {
+        var CompositeCommand = function(commands) {
             var self = this;
-            self.executeCommands = executeCommands;
-            self.undoCommands = undoCommands;
+            self.commands = commands;
 
             self.execute = function() {
-                self.executeCommands.map(function(execute) {
-                    execute();
+                self.commands.forEach(function(command) {
+                    command.execute();
                 });
             };
 
             self.undo = function () {
-                self.undoCommands.map(function(undo) {
-                    undo();
+                self.commands.forEach(function(command) {
+                    command.undo();
                 });
             };
         };
@@ -69,7 +64,7 @@
             self.colour = cssFormat(0xFFFFFF);
             self.changeColour = function(colour) {
                 var command = self.changeColourCommand(colour);
-                chartCommandManager.addCommandPair(command.execute, command.undo);
+                chartCommandManager.addCommand(command);
             };
 
             self.changeColourCommand = function(colour) {
@@ -86,16 +81,14 @@
         };
 
         self.clearCells = function() {
-            var executeCommands = [];
-            var undoCommands = [];
+            var commands = [];
             self.cells.forEach(function(elementRow) {
                 elementRow.forEach(function(elementCell) {
                     var command = elementCell.changeColourCommand(0xFFFFFF);
-                    executeCommands.push(command.execute);
-                    undoCommands.push(command.undo);
+                    commands.push(command);
                 });
             });
-            chartCommandManager.addCommand(new CompositeCommand(executeCommands, undoCommands));
+            chartCommandManager.addCommand(new CompositeCommand(commands));
         }
 
         self.cells = [];
