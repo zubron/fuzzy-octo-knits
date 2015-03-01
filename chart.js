@@ -107,21 +107,10 @@
             self.colour = colour; 
         };
 
-        self.undo = function() {
-            chartCommandManager.undo();
-        };
-
-        self.redo = function() {
-            chartCommandManager.redo();
-        };
-
-        self.canUndo = function() {
-            return chartCommandManager.canUndo();
-        };
-
-        self.canRedo = function() {
-            return chartCommandManager.canRedo();
-        };
+        self.undo = chartCommandManager.undo;
+        self.redo = chartCommandManager.redo;
+        self.canUndo = chartCommandManager.canUndo;
+        self.canRedo = chartCommandManager.canRedo;
 
         for (var i = 0; i < 8; i++) {
             self.cells[i] = [];
