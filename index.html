@@ -23,7 +23,7 @@
             <button type="button" class="btn btn-lg" ng-click="chart.redo()" ng-disabled="!chart.canRedo()">Redo</button>
         </div>
         <div class="chart-container">
-            <div ng-repeat="row in chart.cells track by $index">
+            <div ng-repeat="row in chart.cells">
                 <div class="chart-box" ng-repeat="cell in row" ng-click="chart.changeColour($event, cell.row, cell.column)" ng-style="{'background-color': cell.colour}">
                 </div>
             </div>
