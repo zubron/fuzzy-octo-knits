@@ -1,0 +1,24 @@
+{
+  "name": "fuzzy-octo-knits",
+  "version": "0.0.0",
+  "homepage": "https://github.com/zubron/fuzzy-octo-knits",
+  "authors": [
+    "Bridget McErlean <bridgetmcerlean@gmail.com>"
+  ],
+  "description": "Create fair-isle knitting charts",
+  "main": [
+    "index.html",
+    "app.js",
+    "chart.js",
+    "style.css"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
