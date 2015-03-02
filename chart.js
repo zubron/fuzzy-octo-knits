@@ -1,8 +1,7 @@
 (function() {
     var app = angular.module('chart', []);
 
-    app.controller('ChartController', function($http) {
-        var self = this;
+    app.controller('ChartController', function($scope) {
 
         var CommandManager = function() {
             var self = this;
@@ -86,56 +85,56 @@
             };
         };
 
-        self.clearCells = function() {
+        $scope.clearCells = function() {
             var commands = [];
-            self.cells.forEach(function(elementRow) {
+            $scope.cells.forEach(function(elementRow) {
                 elementRow.forEach(function(elementCell) {
                     var command = elementCell.changeColourCommand(0xFFFFFF);
                     commands.push(command);
                 });
             });
             chartCommandManager.addCommand(new CompositeCommand(commands));
-        }
-
-        self.cells = [];
-        self.colour = 0xFFFFFF;
-        self.defaultColours = [0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF00FF, 0xFFFFFF];
-        self.cssFormat = cssFormat;
-
-        self.selectColour = function(colour) {
-            self.colour = colour; 
         };
 
-        self.undo = chartCommandManager.undo;
-        self.redo = chartCommandManager.redo;
-        self.canUndo = chartCommandManager.canUndo;
-        self.canRedo = chartCommandManager.canRedo;
+        $scope.rows;
+        $scope.columns;
+        $scope.cells = [];
+        $scope.colour = 0xFFFFFF;
+        $scope.defaultColours = [0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF00FF, 0xFFFFFF];
+        $scope.cssFormat = cssFormat;
 
-        self.fillRow = function(index) {
-            console.log('doubleClick' + index);
-            var row = self.cells[index];
-            var commands = [];
-            row.forEach(function(cell) {
-                var command = cell.changeColourCommand(self.colour);
-                commands.push(command);
+        $scope.selectColour = function(colour) {
+            $scope.colour = colour;
+        };
+
+        $scope.undo = chartCommandManager.undo;
+        $scope.redo = chartCommandManager.redo;
+        $scope.canUndo = chartCommandManager.canUndo;
+        $scope.canRedo = chartCommandManager.canRedo;
+
+        $scope.fillRow = function(index) {
+            var row = $scope.cells[index];
+            var commands = row.map(function(cell) {
+                return cell.changeColourCommand($scope.colour);
             });
             chartCommandManager.addCommand(new CompositeCommand(commands));
         };
 
-        self.changeColour = function(event, row, column) {
+        $scope.changeColour = function(event, row, column) {
             if(event.ctrlKey) {
-                self.fillRow(row);
+                $scope.fillRow(row);
             } else {
-                self.cells[row][column].changeColour(self.colour);
+                $scope.cells[row][column].changeColour($scope.colour);
             }
         };
 
-        for (var row = 0; row < 6; row++) {
-            self.cells[row] = [];
-            for (var column = 0; column < 8; column++) {
-                self.cells[row][column] = new ChartCell(row, column);
+        $scope.initChart = function() {
+            for (var row = 0; row < $scope.rows; row++) {
+                $scope.cells[row] = [];
+                for (var column = 0; column < $scope.columns; column++) {
+                    $scope.cells[row][column] = new ChartCell(row, column);
+                }
             }
         }
- 
    });
 })();

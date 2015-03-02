@@ -1,20 +1,16 @@
 .chart-container {
-    border : thin black;
-    border-style: solid;
-    border-right-style: none;
-    border-bottom-style: none;
-    width: 800px;
-    height: 600px;
     box-sizing: content-box;
 }
 
+.chart-row {
+    clear: both;
+    float: left;
+}
+
 .chart-box {
-    width: 100px;
-    height: 100px;
-    border: thin black;
-    border-left-style: none;
-    border-right-style: solid;
-    border-bottom-style: solid;
+    width: 50px;
+    height: 50px;
+    outline: solid 1px;
     float: left;
     box-sizing: border-box;
 }
@@ -28,8 +24,7 @@
 .chart-colour-selector-box {
     width: 45px;
     height: 45px;
-    border: thin black;
-    border-style: solid;
+    border: thin solid black;
     margin-right: 5px;
     float: left;
 }
