@@ -96,9 +96,11 @@
             chartCommandManager.addCommand(new CompositeCommand(commands));
         };
 
-        $scope.rows;
-        $scope.columns;
+        var maxWidth = 800;
+        $scope.rows = 0;
+        $scope.columns = 0;
         $scope.cells = [];
+        $scope.cellDimensions = 30;
         $scope.colour = 0xFFFFFF;
         $scope.defaultColours = [0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF00FF, 0xFFFFFF];
         $scope.cssFormat = cssFormat;
@@ -135,6 +137,18 @@
                     $scope.cells[row][column] = new ChartCell(row, column);
                 }
             }
-        }
+            if ($scope.columns * $scope.cellDimensions > maxWidth) {
+                $scope.cellDimensions = maxWidth / $scope.columns;
+            }
+        };
+
+        $scope.cellHeight = function() {
+            return $scope.cellDimensions + 'px';
+        };
+
+
+        $scope.cellWidth = function() {
+            return $scope.cellDimensions + 'px';
+        };
    });
 })();
