@@ -33,7 +33,7 @@
                 <button type="button" class="btn btn-lg" ng-click="undo()" ng-disabled="!canUndo()">Undo</button>
                 <button type="button" class="btn btn-lg" ng-click="redo()" ng-disabled="!canRedo()">Redo</button>
             </div>
-            <div class="chart-container">
+            <div class="chart-container" ng-style="{'width': chartWidth()}">
                 <div ng-repeat="row in cells" class="chart-row">
                     <div class="chart-box" ng-repeat="cell in row" ng-click="changeColour($event, cell.row, cell.column)" ng-style="{'background-color': cell.colour, 'width': cellWidth(), 'height': cellHeight()}">
                     </div>

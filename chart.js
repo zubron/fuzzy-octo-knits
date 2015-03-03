@@ -96,7 +96,7 @@
             chartCommandManager.addCommand(new CompositeCommand(commands));
         };
 
-        var maxWidth = 800;
+        var maxChartWidth = 750;
         $scope.rows = 0;
         $scope.columns = 0;
         $scope.cells = [];
@@ -137,8 +137,8 @@
                     $scope.cells[row][column] = new ChartCell(row, column);
                 }
             }
-            if ($scope.columns * $scope.cellDimensions > maxWidth) {
-                $scope.cellDimensions = maxWidth / $scope.columns;
+            if ($scope.columns * $scope.cellDimensions > maxChartWidth) {
+                $scope.cellDimensions = maxChartWidth / $scope.columns;
             }
         };
 
@@ -146,9 +146,12 @@
             return $scope.cellDimensions + 'px';
         };
 
-
         $scope.cellWidth = function() {
             return $scope.cellDimensions + 'px';
+        };
+
+        $scope.chartWidth = function() {
+            return maxChartWidth + 'px';
         };
    });
 })();
