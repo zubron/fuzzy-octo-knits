@@ -99,6 +99,8 @@
         var maxChartWidth = 750;
         $scope.rows = 0;
         $scope.columns = 0;
+        $scope.gaugeStitches = 0;
+        $scope.gaugeRows = 0;
         $scope.cells = [];
         $scope.cellHeight = 30;
         $scope.cellWidth = 30;
@@ -149,6 +151,10 @@
 
         $scope.cellWidthPx = function() {
             return $scope.cellWidth + 'px';
+        };
+
+        $scope.changeGauge = function(stitches, rows) {
+            $scope.cellHeight = $scope.cellWidth * (stitches / rows);
         };
 
         $scope.chartWidth = function() {

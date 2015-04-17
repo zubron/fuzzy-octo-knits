@@ -17,11 +17,19 @@
         <div class="chart-dimension-selector">
             <h4>Chart dimensions:</h4>
             <form>
+                Stitches:
+                <input type="number" ng-model="columns" min="0" max="50"/>
                 Rows:
                 <input type="number" ng-model="rows" min="0" max="50"/>
-                Columns:
-                <input type="number" ng-model="columns" min="0" max="50"/>
                 <button type="button" class="btn" ng-click="initChart()" ng-disabled="cells.length !== 0">Create chart</button>
+            </form>
+            <h4>Gauge:</h4>
+            <form>
+                Stitches:
+                <input type="number" ng-model="gaugeStitches" min="0" max="50"/>
+                Rows:
+                <input type="number" ng-model="gaugeRows" min="0" max="50"/>
+                <button type="button" class="btn" ng-click="changeGauge(gaugeStitches, gaugeRows)">Apply</button>
             </form>
         </div>
         <div ng-hide="cells.length === 0">
