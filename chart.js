@@ -61,7 +61,7 @@
                 return '#' + String('000000' + colour.toString(16)).slice(-6);
             }
         };
-        
+
         var ChartCell = function(row, column) {
             var self = this;
             this.row = row;
@@ -100,7 +100,8 @@
         $scope.rows = 0;
         $scope.columns = 0;
         $scope.cells = [];
-        $scope.cellDimensions = 30;
+        $scope.cellHeight = 30;
+        $scope.cellWidth = 30;
         $scope.colour = 0xFFFFFF;
         $scope.defaultColours = [0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF00FF, 0xFFFFFF];
         $scope.cssFormat = cssFormat;
@@ -138,16 +139,16 @@
                 }
             }
             if ($scope.columns * $scope.cellDimensions > maxChartWidth) {
-                $scope.cellDimensions = maxChartWidth / $scope.columns;
+                $scope.cellWidth = $scope.cellHeight = maxChartWidth / $scope.columns;
             }
         };
 
-        $scope.cellHeight = function() {
-            return $scope.cellDimensions + 'px';
+        $scope.cellHeightPx = function() {
+            return $scope.cellHeight + 'px';
         };
 
-        $scope.cellWidth = function() {
-            return $scope.cellDimensions + 'px';
+        $scope.cellWidthPx = function() {
+            return $scope.cellWidth + 'px';
         };
 
         $scope.chartWidth = function() {
