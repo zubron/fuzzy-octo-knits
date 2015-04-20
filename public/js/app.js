@@ -11,8 +11,7 @@ fuzzyOctoKnitsApp.config(['$routeProvider',
                 controller: 'ChartController'
             }).
             when('/', {
-                templateUrl: 'index.html',
-                controller: 'ChartController'
+                templateUrl: 'welcome.html'
             }).
             otherwise({
                 redirectTo: '/'
