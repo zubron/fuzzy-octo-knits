@@ -1,19 +1,31 @@
 <!DOCTYPE html>
-<html lang="end" ng-app="chart">
+<html lang="end" ng-app="fuzzyOctoKnitsApp">
 <head>
     <title>
         fuzzy-octo-knits
     </title>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/chart.js"></script>
 </head>
 <body>
     <div class="container" ng-controller="ChartController">
-        <div class="page-header">
-            <h1>fuzzy-octo-knits chart</h1>
-        </div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">fuzzy octo knits</a>
+                </div>
+                <div id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/create">Create</a><li>
+                        <li><a href="#/edit">Edit</a><li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div class="chart-dimension-selector">
             <h4>Chart dimensions:</h4>
             <form>

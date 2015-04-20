@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module('chart', []);
+    var app = angular.module('knittingControllers', []);
 
     app.controller('ChartController', function($scope) {
 
