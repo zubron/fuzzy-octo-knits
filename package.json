@@ -4,7 +4,12 @@
         "type" : "git",
         "url" : "http://github.com/zubron/fuzzy-octo-knits.git"
     },
+    "scripts" : {
+        "postinstall" : "bower install",
+        "start" : "node server.js"
+    },
     "dependencies" : {
-        "express" : "*"
+        "express" : "*",
+        "bower" : "*"
     }
 }
