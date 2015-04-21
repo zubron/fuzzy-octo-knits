@@ -6,14 +6,21 @@
             <button type="submit" class="btn btn-default" ng-click="initChart()" ng-disabled="cells.length !== 0">Create chart</button>
         </form>
     </div>
-    <h4>Gauge:</h4>
-    <form>
-        Stitches:
-        <input type="number" ng-model="gaugeStitches" min="0" max="50"/>
-        Rows:
-        <input type="number" ng-model="gaugeRows" min="0" max="50"/>
-        <button type="button" class="btn" ng-click="changeGauge(gaugeStitches, gaugeRows)">Apply</button>
-    </form>
+    <div ng-show="cells.length !== 0">
+        <p class="lead">Designing a new chart with {{columns}} stitches and {{rows}} rows</p>
+    </div>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Gauge settings
+    </button>
+    <div class="collapse" id="collapseExample">
+        <div class="well form-group">
+            <form class="form-inline">
+                <label for="gaugeStitches">Stitches</label>  <input type="number" id="gaugeStitches" class="form-control" ng-model="gaugeStitches" min="0" max="50"/>
+                <label for="gaugeRows">Rows</label>  <input type="number" id="gaugeRows" class="form-control" ng-model="gaugeRows" min="0" max="50"/>
+                <button type="button" class="btn btn-default" ng-click="changeGauge(gaugeStitches, gaugeRows)">Apply</button>
+            </form>
+        </div>
+    </div>
 </div>
 <div ng-hide="cells.length === 0">
     <div class="chart-colour-selector">
