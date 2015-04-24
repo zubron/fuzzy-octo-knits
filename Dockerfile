@@ -11,4 +11,4 @@ WORKDIR	/apps/chart
 
 EXPOSE	8080
 RUN npm install
-CMD	["node", "start"]
+CMD	["npm", "start"]
